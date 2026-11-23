@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Task Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<main id="auth" class="auth" hidden>
+  <section class="auth-brand">
+    <h1>Finish what you start.</h1>
+    <p>Plan tasks, move them across the board, and see what is due next.</p>
+  </section>
+  <section class="auth-panel">
+    <form id="emailForm" class="stack">
+      <h2>Sign in</h2>
+      <p class="muted">Enter your email. We will send you a 6-digit code.</p>
+      <label>Email<input type="email" id="email" required autocomplete="email" placeholder="you@example.com"></label>
+      <button class="btn primary" type="submit">Send code</button>
+    </form>
+    <form id="otpForm" class="stack" hidden>
+      <h2>Enter your code</h2>
+      <p class="muted">We sent a code to <strong id="sentTo"></strong>.</p>
+      <label>6-digit code<input id="otp" inputmode="numeric" maxlength="6" required autocomplete="one-time-code" placeholder="123456"></label>
+      <button class="btn primary" type="submit">Verify and sign in</button>
+      <div class="row">
+        <button class="link" type="button" id="resend">Send a new code</button>
+        <button class="link" type="button" id="changeEmail">Use a different email</button>
+      </div>
+    </form>
+    <p id="authMsg" class="msg" role="alert"></p>
+  </section>
+</main>
+
+<div id="app" hidden>
+  <header class="top">
+    <strong class="logo">Task Manager</strong>
+    <div class="top-actions">
+      <input type="search" id="search" placeholder="Search tasks" aria-label="Search tasks">
+      <button class="btn primary" id="addBtn">Add task</button>
+      <button class="btn" id="logoutBtn">Sign out</button>
+    </div>
+  </header>
+  <p id="appMsg" class="msg" role="alert"></p>
+  <main class="board" id="board"></main>
+</div>
+
+<dialog id="taskDialog">
+  <form id="taskForm" class="stack" method="dialog">
+    <h2 id="dialogTitle">Add task</h2>
+    <label>Title<input id="fTitle" required maxlength="120"></label>
+    <label>Description<textarea id="fDesc" rows="3"></textarea></label>
+    <div class="row">
+      <label>Status<select id="fStatus"></select></label>
+      <label>Priority<select id="fPriority"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select></label>
+      <label>Due date<input type="date" id="fDue"></label>
+    </div>
+    <div class="row end">
+      <button class="btn" type="button" id="cancelBtn">Cancel</button>
+      <button class="btn primary" type="submit">Save task</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
